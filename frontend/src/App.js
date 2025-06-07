@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';  // import the CSS file
+import './App.css';
 
 function FeedbackForm() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [feedbackList, setFeedbackList] = useState([]);
 
+  const BACKEND_URL = 'https://feedback-web.onrender.com'; // ✅ Replace with your backend URL
+
   useEffect(() => {
-    fetch('https://feedback-web.onrender.com')
+    fetch(`${BACKEND_URL}/feedback`)
       .then(res => res.json())
       .then(data => setFeedbackList(data))
       .catch(console.error);
   }, []);
-  
+
   const handleChange = (e) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
@@ -19,7 +21,7 @@ function FeedbackForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch('http://localhost:5000/feedback', {
+    fetch(`${BACKEND_URL}/feedback`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData)
@@ -31,7 +33,7 @@ function FeedbackForm() {
       .then(() => {
         alert('Feedback submitted!');
         setFormData({ name: '', email: '', message: '' });
-        return fetch('http://localhost:5000/feedback');
+        return fetch(`${BACKEND_URL}/feedback`);
       })
       .then(res => res.json())
       .then(data => setFeedbackList(data))
