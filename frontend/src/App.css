@@ -1,0 +1,125 @@
+/* FeedbackForm.css - Dark Theme */
+
+.feedback-container {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 30px 40px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #1f1f2e, #2c2c3d);
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
+  color: #e0e0ff;
+  border: 2px solid #7f5af0; /* vibrant purple */
+}
+
+.feedback-container h2 {
+  margin-bottom: 25px;
+  color: #bb86fc; /* vibrant lavender */
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-shadow: 1px 1px 4px #7f5af0cc;
+}
+
+.feedback-container h3 {
+  margin-top: 40px;
+  color: #a078d9;
+  border-bottom: 2px solid #7f5af0;
+  padding-bottom: 10px;
+  font-weight: 600;
+}
+
+.feedback-form {
+  margin-bottom: 40px;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 17px;
+  border: 2px solid #7f5af0;
+  border-radius: 8px;
+  background-color: #292940;
+  color: #e0e0ff;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+  outline: none;
+  box-sizing: border-box;
+  font-weight: 500;
+}
+
+input[type="text"]::placeholder,
+input[type="email"]::placeholder,
+textarea::placeholder {
+  color: #aaaaffaa;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+  border-color: #bb86fc;
+  background-color: #3a3a55;
+  box-shadow: 0 0 10px #bb86fcaa;
+  color: #fff;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 90px;
+  font-family: inherit;
+}
+
+button[type="submit"] {
+  background-color: #7f5af0;
+  color: white;
+  padding: 12px 30px;
+  font-size: 18px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(127, 90, 240, 0.7);
+}
+
+button[type="submit"]:hover {
+  background-color: #bb86fc;
+  box-shadow: 0 6px 20px rgba(187, 134, 252, 0.8);
+}
+
+.feedback-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.feedback-list li {
+  margin-bottom: 25px;
+  background-color: #292940;
+  border-left: 6px solid #7f5af0;
+  padding: 15px 20px;
+  border-radius: 8px;
+  box-shadow: 0 3px 8px rgba(127, 90, 240, 0.3);
+  transition: background-color 0.3s ease;
+  color: #e0e0ff;
+}
+
+.feedback-list li:hover {
+  background-color: #3a3a55;
+}
+
+.feedback-list strong {
+  color: #d0bfff;
+  font-size: 1.1rem;
+  letter-spacing: 0.03em;
+}
+
+.feedback-list small {
+  color: #aaaaffcc;
+  font-style: italic;
+  font-size: 0.9rem;
+}
