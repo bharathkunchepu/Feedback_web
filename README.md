@@ -7,8 +7,8 @@ Deployed to cloud (Render.com).
 
 ## Live Demo
 
-Frontend: [https://your-frontend-url.onrender.com]()  
-Backend API: (https://feedback-web.onrender.com)
+Frontend: https://feedback-web-2.onrender.com 
+Backend API: https://feedback-web.onrender.com
 
 ## Features
 
