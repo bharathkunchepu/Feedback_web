@@ -1,5 +1,3 @@
-/* FeedbackForm.css - Dark Theme */
-
 .feedback-container {
   max-width: 700px;
   margin: 40px auto;
@@ -9,12 +7,12 @@
   border-radius: 15px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
   color: #e0e0ff;
-  border: 2px solid #7f5af0; /* vibrant purple */
+  border: 2px solid #7f5af0; 
 }
 
 .feedback-container h2 {
   margin-bottom: 25px;
-  color: #bb86fc; /* vibrant lavender */
+  color: #bb86fc; 
   text-align: center;
   font-weight: 700;
   letter-spacing: 1.2px;
