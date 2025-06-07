@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import './App.css'; 
+import './App.css';
 
 function FeedbackForm() {
-  const BACKEND_URL = 'https://feedback-web.onrender.com';  // <-- your backend link
+  const BACKEND_URL = 'https://feedback-web.onrender.com'; // Your deployed backend URL
 
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [feedbackList, setFeedbackList] = useState([]);
@@ -23,11 +23,12 @@ function FeedbackForm() {
   };
 
   const handleChange = (e) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
       const res = await fetch(`${BACKEND_URL}/feedback`, {
         method: 'POST',
@@ -39,7 +40,7 @@ function FeedbackForm() {
 
       alert('Feedback submitted!');
       setFormData({ name: '', email: '', message: '' });
-      await fetchFeedback(); 
+      await fetchFeedback();
     } catch (err) {
       alert(err.message);
     }
@@ -84,7 +85,7 @@ function FeedbackForm() {
 
       <h3>All Feedback</h3>
       <ul className="feedback-list">
-        {feedbackList.map((fb) => (
+        {feedbackList.map(fb => (
           <li key={fb._id}>
             <strong>{fb.name}</strong> (<small>{fb.email}</small>)<br />
             {fb.message}
