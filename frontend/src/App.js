@@ -1,43 +1,44 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
+import './App.css'; 
 
 function FeedbackForm() {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [feedbackList, setFeedbackList] = useState([]);
-
   const BACKEND_URL = 'https://feedback-web.onrender.com'; 
 
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [feedbackList, setFeedbackList] = useState([]);
   useEffect(() => {
-    fetch(`${BACKEND_URL}/feedback`)
-      .then(res => res.json())
-      .then(data => setFeedbackList(data))
-      .catch(console.error);
+    fetchFeedback();
   }, []);
-
-  const handleChange = (e) => {
-    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  const fetchFeedback = async () => {
+    try {
+      const res = await fetch(`${https://feedback-web.onrender.com}/feedback`);
+      if (!res.ok) throw new Error('Error fetching feedback');
+      const data = await res.json();
+      setFeedbackList(data);
+    } catch (err) {
+      console.error(err.message);
+    }
   };
-
-  const handleSubmit = (e) => {
+  const handleChange = (e) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      const res = await fetch(`${BACKEND_URL}/feedback`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
 
-    fetch(`${BACKEND_URL}/feedback`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData)
-    })
-      .then(res => {
-        if (!res.ok) throw new Error('Failed to submit');
-        return res.json();
-      })
-      .then(() => {
-        alert('Feedback submitted!');
-        setFormData({ name: '', email: '', message: '' });
-        return fetch(`${BACKEND_URL}/feedback`);
-      })
-      .then(res => res.json())
-      .then(data => setFeedbackList(data))
-      .catch(err => alert(err.message));
+      if (!res.ok) throw new Error('Failed to submit feedback');
+
+      alert('Feedback submitted!');
+      setFormData({ name: '', email: '', message: '' });
+      await fetchFeedback(); 
+    } catch (err) {
+      alert(err.message);
+    }
   };
 
   return (
