@@ -5,7 +5,7 @@ function FeedbackForm() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [feedbackList, setFeedbackList] = useState([]);
 
-  const BACKEND_URL = 'https://feedback-web.onrender.com'; // ✅ Replace with your backend URL
+  const BACKEND_URL = 'https://feedback-web.onrender.com'; 
 
   useEffect(() => {
     fetch(`${BACKEND_URL}/feedback`)
