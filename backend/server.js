@@ -4,9 +4,8 @@ const cors = require('cors');
 const Feedback = require('./models/feedback');
 
 const app = express();
-const PORT = process.env.PORT || 5000; // allow Render to set PORT
+const PORT = process.env.PORT || 5000; 
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
@@ -28,7 +27,7 @@ app.post('/feedback', async (req, res) => {
   }
 });
 
-// GET /feedback
+// GET 
 app.get('/feedback', async (req, res) => {
   try {
     const feedbackList = await Feedback.find().sort({ createdAt: -1 });
@@ -37,8 +36,6 @@ app.get('/feedback', async (req, res) => {
     res.status(500).json({ error: 'Error fetching feedback' });
   }
 });
-
-// GET / (optional root route)
 app.get('/', (req, res) => {
   res.send('Feedback API is running 🚀');
 });
