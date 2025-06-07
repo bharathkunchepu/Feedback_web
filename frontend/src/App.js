@@ -2,16 +2,18 @@ import React, { useState, useEffect } from 'react';
 import './App.css'; 
 
 function FeedbackForm() {
-  const BACKEND_URL = 'https://feedback-web.onrender.com'; 
+  const BACKEND_URL = 'https://feedback-web.onrender.com';  // <-- your backend link
 
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [feedbackList, setFeedbackList] = useState([]);
+
   useEffect(() => {
     fetchFeedback();
   }, []);
+
   const fetchFeedback = async () => {
     try {
-      const res = await fetch(`${https://feedback-web.onrender.com}/feedback`);
+      const res = await fetch(`${BACKEND_URL}/feedback`);
       if (!res.ok) throw new Error('Error fetching feedback');
       const data = await res.json();
       setFeedbackList(data);
@@ -19,9 +21,11 @@ function FeedbackForm() {
       console.error(err.message);
     }
   };
+
   const handleChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
