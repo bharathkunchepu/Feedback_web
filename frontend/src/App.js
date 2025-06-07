@@ -6,7 +6,7 @@ function FeedbackForm() {
   const [feedbackList, setFeedbackList] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/feedback')
+    fetch('https://feedback-web.onrender.com')
       .then(res => res.json())
       .then(data => setFeedbackList(data))
       .catch(console.error);
