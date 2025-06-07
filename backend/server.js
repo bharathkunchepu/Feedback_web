@@ -1,12 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
-
 const cors = require('cors');
 const Feedback = require('./models/feedback');
 
-
 const app = express();
-const PORT = 5000; 
+const PORT = process.env.PORT || 5000; // allow Render to set PORT
 
 // Middleware
 app.use(cors());
@@ -15,9 +13,9 @@ app.use(express.json());
 // MongoDB Atlas connection
 mongoose.connect('mongodb+srv://kunchepubharath:bharath%402003@feedbackdb.ywgn11o.mongodb.net/?retryWrites=true&w=majority&appName=feedbackdb')
     .then(() => console.log('MongoDB Atlas connected'))
-    .catch(err => console.error('MongoDB Atlas connection error:', err))
+    .catch(err => console.error('MongoDB Atlas connection error:', err));
 
-// POST 
+// POST /feedback
 app.post('/feedback', async (req, res) => {
   try {
     const { name, email, message } = req.body;
@@ -25,22 +23,27 @@ app.post('/feedback', async (req, res) => {
     await newFeedback.save();
     res.status(201).json({ message: 'Feedback submitted successfully' });
   } catch (err) {
-    console.error('Error saving feedback:', err);  // <-- add this
+    console.error('Error saving feedback:', err);
     res.status(500).json({ error: 'Error saving feedback' });
   }
 });
 
-
-// GET 
+// GET /feedback
 app.get('/feedback', async (req, res) => {
-    try {
+  try {
     const feedbackList = await Feedback.find().sort({ createdAt: -1 });
     res.json(feedbackList);
-    } catch (err) {
-     res.status(500).json({ error: 'Error fetching feedback' });
-    }
+  } catch (err) {
+    res.status(500).json({ error: 'Error fetching feedback' });
+  }
 });
+
+// GET / (optional root route)
+app.get('/', (req, res) => {
+  res.send('Feedback API is running 🚀');
+});
+
 // Start server
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
