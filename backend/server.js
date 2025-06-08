@@ -4,20 +4,31 @@ const cors = require('cors');
 const Feedback = require('./models/feedback');
 
 const app = express();
-const PORT = process.env.PORT || 5000; 
+const PORT = process.env.PORT || 5000;
 
-app.use(cors());
+// 🟢 Order is important: Parse JSON BEFORE cors
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
-// MongoDB Atlas connection
+// Debug incoming requests
+app.use((req, res, next) => {
+  console.log('Incoming request body:', req.body);
+  next();
+});
+
+// MongoDB connection
 mongoose.connect('mongodb+srv://kunchepubharath:bharath%402003@feedbackdb.ywgn11o.mongodb.net/?retryWrites=true&w=majority&appName=feedbackdb')
-    .then(() => console.log('MongoDB Atlas connected'))
-    .catch(err => console.error('MongoDB Atlas connection error:', err));
+  .then(() => console.log('MongoDB Atlas connected'))
+  .catch(err => console.error('MongoDB connection error:', err));
 
 // POST /feedback
 app.post('/feedback', async (req, res) => {
   try {
     const { name, email, message } = req.body;
+    if (!name || !email || !message) {
+      return res.status(400).json({ error: 'All fields are required' });
+    }
     const newFeedback = new Feedback({ name, email, message });
     await newFeedback.save();
     res.status(201).json({ message: 'Feedback submitted successfully' });
@@ -27,7 +38,7 @@ app.post('/feedback', async (req, res) => {
   }
 });
 
-// GET 
+// GET /feedback
 app.get('/feedback', async (req, res) => {
   try {
     const feedbackList = await Feedback.find().sort({ createdAt: -1 });
@@ -36,6 +47,8 @@ app.get('/feedback', async (req, res) => {
     res.status(500).json({ error: 'Error fetching feedback' });
   }
 });
+
+// Root endpoint
 app.get('/', (req, res) => {
   res.send('Feedback API is running 🚀');
 });
