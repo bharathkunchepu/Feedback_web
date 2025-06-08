@@ -62,7 +62,7 @@ Start backend:
 npm start
 ```
 
-The backend will run on: [http://localhost:5000](http://localhost:5000)
+The backend will run on: https://feedback-web.onrender.com
 
 ### 3. Frontend Setup (React)
 
@@ -72,7 +72,7 @@ npm install
 npm start
 ```
 
-The frontend will run on: [http://localhost:3000](http://localhost:3000)
+The frontend will run on: https://feedback-web-2.onrender.com
 
 ## API Endpoints
 
