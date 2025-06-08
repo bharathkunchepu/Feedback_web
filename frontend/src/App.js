@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 
 function FeedbackForm() {
-  const BACKEND_URL = 'https://feedback-web.onrender.com'; // Your deployed backend URL
+  const BACKEND_URL = 'https://feedback-web.onrender.com'; // Deployed backend URL
 
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [feedbackList, setFeedbackList] = useState([]);
@@ -36,7 +36,12 @@ function FeedbackForm() {
         body: JSON.stringify(formData),
       });
 
-      if (!res.ok) throw new Error('Failed to submit feedback');
+      const data = await res.json(); // capture backend response
+
+      if (!res.ok) {
+        console.error('Backend error response:', data);
+        throw new Error(data?.error || 'Failed to submit feedback');
+      }
 
       alert('Feedback submitted!');
       setFormData({ name: '', email: '', message: '' });
