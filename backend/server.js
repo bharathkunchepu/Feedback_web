@@ -6,20 +6,22 @@ const Feedback = require('./models/feedback');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// 🟢 Order is important: Parse JSON BEFORE cors
+// Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-// Debug incoming requests
+// Debug: Log incoming requests
 app.use((req, res, next) => {
   console.log('Incoming request body:', req.body);
   next();
 });
 
-// MongoDB connection
-mongoose.connect('mongodb+srv://kunchepubharath:bharath%402003@feedbackdb.ywgn11o.mongodb.net/feedbackdb?retryWrites=true&w=majority&appName=feedbackdb
-')
+// ✅ Correct MongoDB connection (no line break)
+mongoose.connect('mongodb+srv://kunchepubharath:bharath%402003@feedbackdb.ywgn11o.mongodb.net/feedbackdb?retryWrites=true&w=majority&appName=feedbackdb', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
   .then(() => console.log('MongoDB Atlas connected'))
   .catch(err => console.error('MongoDB connection error:', err));
 
