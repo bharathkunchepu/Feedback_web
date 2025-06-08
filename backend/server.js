@@ -10,14 +10,12 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
-
-// Debug: Log incoming requests
 app.use((req, res, next) => {
   console.log('Incoming request body:', req.body);
   next();
 });
 
-// ✅ Correct MongoDB connection (no line break)
+// MongoDB connection 
 mongoose.connect('mongodb+srv://kunchepubharath:bharath%402003@feedbackdb.ywgn11o.mongodb.net/feedbackdb?retryWrites=true&w=majority&appName=feedbackdb', {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -25,7 +23,7 @@ mongoose.connect('mongodb+srv://kunchepubharath:bharath%402003@feedbackdb.ywgn11
   .then(() => console.log('MongoDB Atlas connected'))
   .catch(err => console.error('MongoDB connection error:', err));
 
-// POST /feedback
+// POST 
 app.post('/feedback', async (req, res) => {
   try {
     const { name, email, message } = req.body;
@@ -41,7 +39,7 @@ app.post('/feedback', async (req, res) => {
   }
 });
 
-// GET /feedback
+// GET 
 app.get('/feedback', async (req, res) => {
   try {
     const feedbackList = await Feedback.find().sort({ createdAt: -1 });
@@ -51,9 +49,8 @@ app.get('/feedback', async (req, res) => {
   }
 });
 
-// Root endpoint
 app.get('/', (req, res) => {
-  res.send('Feedback API is running 🚀');
+  res.send('Feedback API is running ');
 });
 
 // Start server
