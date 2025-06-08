@@ -14,7 +14,7 @@ Backend API: https://feedback-web.onrender.com
 
 - Submit feedback with Name, Email, and Message
 - Display all submitted feedback
-- Responsive design with dark theme
+- Responsive design 
 - Data persisted in MongoDB Atlas
 - Full-stack deployed to the cloud
 
