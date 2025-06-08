@@ -125,15 +125,12 @@ fetch('https://your-backend-url.onrender.com/feedback')
 
 ## Future Improvements
 
-- Add authentication (optional)
+- Add authentication 
 - Add pagination to feedback list
 - Allow editing/deleting feedback (admin feature)
 - Improve form validation and UX
 
-## License
-
-MIT License
 
 ## Author
 
-- Bharath Kumar ([https://github.com/your-github-username](https://github.com/your-github-username))
+- Bharath Kumar ([https://github.com/your-github-bharathkunchepu](https://github.com/your-github-bharathkunchepu))
