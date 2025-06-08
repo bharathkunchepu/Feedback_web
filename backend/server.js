@@ -18,7 +18,8 @@ app.use((req, res, next) => {
 });
 
 // MongoDB connection
-mongoose.connect('mongodb+srv://kunchepubharath:bharath%402003@feedbackdb.ywgn11o.mongodb.net/?retryWrites=true&w=majority&appName=feedbackdb')
+mongoose.connect('mongodb+srv://kunchepubharath:bharath%402003@feedbackdb.ywgn11o.mongodb.net/feedbackdb?retryWrites=true&w=majority&appName=feedbackdb
+')
   .then(() => console.log('MongoDB Atlas connected'))
   .catch(err => console.error('MongoDB connection error:', err));
 
